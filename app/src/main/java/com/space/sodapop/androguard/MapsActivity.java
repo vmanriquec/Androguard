@@ -1,14 +1,18 @@
 package com.space.sodapop.androguard;
 
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -38,19 +42,53 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+mMap.setMinZoomPreference(16);//minimo para ver con zoom
+mMap.setMaxZoomPreference(18);
         // Add a marker in Sydney and move the camera
-        LatLng huaral = new LatLng( -11.495648, -77.20822);
+        LatLng huaral = new LatLng( -12.120144 ,  -77.033581);
         //LatLng pero=new LatLng(-35,200);
         //mMap.addMarker(new MarkerOptions().position(pero).title("nueva ubicacion"));
-        mMap.addMarker(new MarkerOptions().position(huaral).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions()
+                .position(huaral)
+                .title("Marker arrastrable")
+        .draggable(true));
         CameraPosition camera =new CameraPosition.Builder()
                 .target(huaral)
-                .zoom(18)//15 nivel calledss-20 edificios
+                .zoom(17)//15 nivel calledss-20 edificios--limite es 21
                 .bearing(90)//orientacion de camara al este
-                .tilt(30)//till hacia 30 grados efecto 3d
+                .tilt(30)//till hacia 30 grados efecto 3d maximo 90
                 .build();
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(camera));
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Toast.makeText(MapsActivity.this,"este es un punto en long:"+latLng.latitude+"  y   latitud :   "+latLng.longitude,Toast.LENGTH_LONG).show();
+            }
+        });
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                Toast.makeText(MapsActivity.this,"click largoooo:"+latLng.latitude+"  y   latitud :   "+latLng.longitude,Toast.LENGTH_LONG).show();
+
+            }
+        });
+        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.refresmap));
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.bandera));
+            }
+        });
     }
+
 }
