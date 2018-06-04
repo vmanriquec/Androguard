@@ -7,6 +7,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -39,8 +40,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng huaral = new LatLng( -11.495648, -77.20822);
+        //LatLng pero=new LatLng(-35,200);
+        //mMap.addMarker(new MarkerOptions().position(pero).title("nueva ubicacion"));
+        mMap.addMarker(new MarkerOptions().position(huaral).title("Marker in Sydney"));
+        CameraPosition camera =new CameraPosition.Builder()
+                .target(huaral)
+                .zoom(18)//15 nivel calledss-20 edificios
+                .bearing(90)//orientacion de camara al este
+                .tilt(30)//till hacia 30 grados efecto 3d
+                .build();
+       // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(camera));
     }
 }
