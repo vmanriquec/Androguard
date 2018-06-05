@@ -119,7 +119,7 @@ mMap.setMaxZoomPreference(18);
                 if (marker.getId()=="melbourne"){
 
                  Toast.makeText(MapsActivity.this,"melbourne",Toast.LENGTH_LONG).show();
-                 
+
                 }else {
                     marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.refresmap));
                 }
