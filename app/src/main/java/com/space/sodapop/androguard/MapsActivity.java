@@ -53,23 +53,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-mMap.setMinZoomPreference(16);//minimo para ver con zoom
-mMap.setMaxZoomPreference(18);
+//mMap.setMinZoomPreference(16);//minimo para ver con zoom
+//mMap.setMaxZoomPreference(18);
 
 
 
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-        Bitmap bmp = Bitmap.createBitmap(80, 80, conf);
+        Bitmap bmp = Bitmap.createBitmap(200, 200, conf);
         Canvas canvas1 = new Canvas(bmp);
 
 // paint defines the text color, stroke width and size
         Paint color = new Paint();
-        color.setTextSize(35);
+        color.setTextSize(15);
         color.setColor(Color.BLACK);
 
 // modify canvas
         canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                R.drawable.user), 0,0, color);
+                R.drawable.refresmap), 0,0, color);
         canvas1.drawText("User Name!", 30, 40, color);
 
 
@@ -92,7 +92,7 @@ mMap.setMaxZoomPreference(18);
 
 
 
- 
+
 
         // Add a marker in Sydney and move the camera
         LatLng huaral = new LatLng( -12.120144 ,  -77.033581);
