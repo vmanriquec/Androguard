@@ -1,5 +1,10 @@
 package com.space.sodapop.androguard;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
@@ -53,6 +58,23 @@ mMap.setMaxZoomPreference(18);
 
 
 
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        Bitmap bmp = Bitmap.createBitmap(80, 80, conf);
+        Canvas canvas1 = new Canvas(bmp);
+
+// paint defines the text color, stroke width and size
+        Paint color = new Paint();
+        color.setTextSize(35);
+        color.setColor(Color.BLACK);
+
+// modify canvas
+        canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
+                R.drawable.user), 0,0, color);
+        canvas1.drawText("User Name!", 30, 40, color);
+
+
+
+
         Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(
@@ -86,12 +108,16 @@ mMap.setMaxZoomPreference(18);
                 .position(huaral)
                 .title("Marker arrastrable")
                 .snippet("este es el relleno que va debajo del market")
-        .draggable(true));
+        .draggable(true)
+                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                // Specifies the anchor to be at a particular point in the marker image.
+                .anchor(0.5f, 1));
         CameraPosition camera =new CameraPosition.Builder()
                 .target(huaral)
                 .zoom(17)//15 nivel calledss-20 edificios--limite es 21
                 .bearing(90)//orientacion de camara al este
                 .tilt(30)//till hacia 30 grados efecto 3d maximo 90
+
                 .build();
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(camera));
