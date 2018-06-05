@@ -92,7 +92,7 @@ mMap.setMaxZoomPreference(18);
 
 
 
-
+ 
 
         // Add a marker in Sydney and move the camera
         LatLng huaral = new LatLng( -12.120144 ,  -77.033581);
