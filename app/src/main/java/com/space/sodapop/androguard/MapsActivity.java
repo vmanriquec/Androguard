@@ -69,8 +69,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 // modify canvas
         canvas1.drawBitmap(BitmapFactory.decodeResource(getResources(),
-                R.drawable.refresmap), 0,0, color);
-        canvas1.drawText("User Name!", 30, 40, color);
+                R.drawable.logo), 0,0, color);
+        canvas1.drawText("Sodapop :)", 30, 40, color);
 
 
 
@@ -106,8 +106,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions()
                 .position(huaral)
-                .title("Marker arrastrable")
-                .snippet("este es el relleno que va debajo del market")
+                .title("Sodapop")
+                .snippet("Las mejores hamburguesas y salchipapas listas para ti")
         .draggable(true)
                 .icon(BitmapDescriptorFactory.fromBitmap(bmp))
                 // Specifies the anchor to be at a particular point in the marker image.
