@@ -1,8 +1,7 @@
 package com.space.sodapop.androguard;
 
-import android.graphics.drawable.Drawable;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,12 +10,19 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CustomCap;
+import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.maps.model.RoundCap;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    private static final int COLOR_BLACK_ARGB = 0xff000000;
+    private static final int POLYLINE_STROKE_WIDTH_PX = 12;
+    Marker melbourne;
     private GoogleMap mMap;
 
     @Override
@@ -44,13 +50,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 mMap.setMinZoomPreference(16);//minimo para ver con zoom
 mMap.setMaxZoomPreference(18);
+
+
+
+        Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
+                .clickable(true)
+                .add(
+                        new LatLng(-35.016, 143.321),
+                        new LatLng(-34.747, 145.592),
+                        new LatLng(-34.364, 147.891),
+                        new LatLng(-33.501, 150.217),
+                        new LatLng(-32.306, 149.248),
+                        new LatLng(-32.491, 147.309)));
+
+        polyline1.setTag("A");
+
+
+
+
+
+
+
+
         // Add a marker in Sydney and move the camera
         LatLng huaral = new LatLng( -12.120144 ,  -77.033581);
-        //LatLng pero=new LatLng(-35,200);
-        //mMap.addMarker(new MarkerOptions().position(pero).title("nueva ubicacion"));
+
+         LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
+         melbourne = mMap.addMarker(new MarkerOptions()
+                .position(MELBOURNE)
+                .title("Melbourne"));
+        melbourne.showInfoWindow();
+
+
         mMap.addMarker(new MarkerOptions()
                 .position(huaral)
                 .title("Marker arrastrable")
+                .snippet("este es el relleno que va debajo del market")
         .draggable(true));
         CameraPosition camera =new CameraPosition.Builder()
                 .target(huaral)
@@ -81,7 +116,13 @@ mMap.setMaxZoomPreference(18);
 
             @Override
             public void onMarkerDrag(Marker marker) {
-marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.refresmap));
+                if (marker.getId()=="melbourne"){
+
+                 Toast.makeText(MapsActivity.this,"melbourne",Toast.LENGTH_LONG).show();
+                 
+                }else {
+                    marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.refresmap));
+                }
             }
 
             @Override
@@ -91,4 +132,30 @@ marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.refresmap));
         });
     }
 
+    private void stylePolyline(Polyline polyline) {
+        String type = "";
+        // Get the data object stored with the polyline.
+        if (polyline.getTag() != null) {
+            type = polyline.getTag().toString();
+        }
+
+        switch (type) {
+            // If no type is given, allow the API to use the default.
+            case "A":
+                // Use a custom bitmap as the cap at the start of the line.
+                polyline.setStartCap(
+                        new CustomCap(
+                                BitmapDescriptorFactory.fromResource(R.drawable.bandera), 10));
+                break;
+            case "B":
+                // Use a round cap at the start of the line.
+                polyline.setStartCap(new RoundCap());
+                break;
+        }
+
+        polyline.setEndCap(new RoundCap());
+        polyline.setWidth(POLYLINE_STROKE_WIDTH_PX);
+        polyline.setColor(COLOR_BLACK_ARGB);
+        polyline.setJointType(JointType.ROUND);
+    }
 }
