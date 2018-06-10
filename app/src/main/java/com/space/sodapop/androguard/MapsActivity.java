@@ -95,7 +95,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         // Add a marker in Sydney and move the camera
-        LatLng huaral = new LatLng( -12.120144 ,  -77.033581);
 
          LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
          melbourne = mMap.addMarker(new MarkerOptions()
@@ -103,6 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("Melbourne"));
         melbourne.showInfoWindow();
 
+        LatLng huaral = new LatLng( -12.120144 ,  -77.033581);
 
         mMap.addMarker(new MarkerOptions()
                 .position(huaral)

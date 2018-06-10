@@ -4,10 +4,14 @@
     android:layout_height="match_parent"
     tools:context="com.space.sodapop.androguard.fragments.MapFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <com.google.android.gms.maps.MapView
+       android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+
+
         android:layout_height="match_parent"
-        android:text="holaaaaaaaaaaaa" />
+        android:layout_width="match_parent"
+        />
+
 
 </FrameLayout>

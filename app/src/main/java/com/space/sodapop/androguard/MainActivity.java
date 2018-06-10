@@ -17,9 +17,17 @@ Fragment currentFragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //CARGAMOS POR DEFECTO EL WELCOMEFRAGMENT
-        currentFragment=new WelcomeFragment();
-        changeFragment(currentFragment);
+
+       //conservar datos aun  cambios de rotacion
+
+if(savedInstanceState==null){
+
+    //CARGAMOS POR DEFECTO EL WELCOMEFRAGMENT
+
+    currentFragment=new WelcomeFragment();
+    changeFragment(currentFragment);
+}
+
     }
 
 
