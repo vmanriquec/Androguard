@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "186718935322",
+    "firebase_url": "https://androguard-48eaa.firebaseio.com",
+    "project_id": "androguard-48eaa",
+    "storage_bucket": "androguard-48eaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186718935322:android:c636d6016ec137bd",
+        "android_client_info": {
+          "package_name": "com.space.sodapop.androguard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186718935322-qhh4vhj7aqq0fot50re2p8mir2qa5o70.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.space.sodapop.androguard",
+            "certificate_hash": "129467d5bd606602da9afa44ff95311ef3dfc196"
+          }
+        },
+        {
+          "client_id": "186718935322-knam3mtbn81a93b0bqgbh7j57qtaknb4.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "186718935322-knam3mtbn81a93b0bqgbh7j57qtaknb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC6hxrbxmu8-LRBB0egHmJYRVmXObCRMs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186718935322-knam3mtbn81a93b0bqgbh7j57qtaknb4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
